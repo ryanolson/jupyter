@@ -1,0 +1,13 @@
+MAINTAINER Ryan Olson rolson@nvidia.com
+
+RUN pip install \
+        ipykernel \
+        jupyter && \
+    python -m ipykernel.kernelspec
+
+ENV JUPTYER_CONFIG_DIR=/etc/jupyter
+COPY jupyter_notebook_config.py $JUPTYER_CONFIG_DIR/jupyter_notebook_config.py
+COPY run_jupyter /usr/local/bin
+EXPOSE 8888
+
+CMD ["jupyter"]
